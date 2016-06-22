@@ -1,0 +1,130 @@
+<script src="/js/fullcalendar.min.js"></script>
+<link rel="stylesheet" href="/css/fullcalendar.css">
+<link>
+
+<div class="container">
+    <div id="fullcalender"></div>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="post">
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="什么时间?" name="when">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">地点</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="发生在哪里?" name="where">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">人物</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="你跟谁?" name="who">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">事件</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="做了什么?" name="what">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">备注/描述</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" name="discription"
+                                      style="margin: 0px -0.850694px 0px 0px; width: 468px; height: 148px;"
+                                      placeholder="想补充些什么?"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    var fullCalender_options = {
+        dayClick: function (date, allDay, jsEvent, view) {
+            var selDate = $.fullCalendar.formatDate(date, 'yyyy-MM-dd');//格式化当前日期
+            $('#myModal').modal('show')
+            $('#myModalLabel').html('新建事件')
+
+        },
+        eventAfterRender: function (event, element, view) {//数据绑定上去后添加相应信息在页面上
+            var fstart = $.fullCalendar.formatDate(event.start, "HH:mm");
+            var fend = $.fullCalendar.formatDate(event.end, "HH:mm");
+
+
+            var confbg = '';
+            if (event.confid == 1) {
+                confbg = confbg + '<span class="fc-event-bg"></span>';
+            } else if (event.confid == 2) {
+                confbg = confbg + '<span class="fc-event-bg"></span>';
+            } else if (event.confid == 3) {
+                confbg = confbg + '<span class="fc-event-bg"></span>';
+            } else if (event.confid == 4) {
+                confbg = confbg + '<span class="fc-event-bg"></span>';
+            } else if (event.confid == 5) {
+                confbg = confbg + '<span class="fc-event-bg"></span>';
+            } else if (event.confid == 6) {
+                confbg = confbg + '<span class="fc-event-bg"></span>';
+            } else {
+                confbg = confbg + '<span class="fc-event-bg"></span>';
+            }
+
+            //  var titlebg = '<span class="fc-event-conf" style="background:' + event.confcolor + '">' + event.confshortname + '</span>';
+
+            //                if (event.repweeks > 0) {
+            //                    titlebg = titlebg + '<span class="fc-event-conf" style="background:#fff;top:0;right:15;color:#3974BC;font-weight:bold">R</span>';
+            //                }
+
+            if (view.name == "month") {//按月份
+                var evtcontent = '<div class="fc-event-vert"><a>';
+                evtcontent = evtcontent + confbg;
+                evtcontent = evtcontent + '<span class="fc-event-titlebg">' + fstart + " - " + fend + event.fullname + '</span>';
+
+                element.html(evtcontent);
+            } else if (view.name == "agendaWeek") {//按周
+                var evtcontent = '<a>';
+                evtcontent = evtcontent + confbg;
+                evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + "-" + fend + '</span>';
+                evtcontent = evtcontent + '<span>' + event.fullname + '</span>';
+
+                element.html(evtcontent);
+            } else if (view.name == "agendaDay") {//按日
+                var evtcontent = '<a>';
+                evtcontent = evtcontent + confbg;
+                evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + " - " + fend + '</span>';
+                //              evtcontent = evtcontent + '<span>Room: ' + event.confname + '</span>';
+                //                evtcontent = evtcontent + '<span>Host: ' + event.fullname + '</span>';
+                //                    evtcontent = evtcontent + '<span>Topic: ' + event.topic + '</span>';
+                // evtcontent = evtcontent + '</a><span class="ui-icon ui-icon-arrow-2-n-s"><div class="ui-resizable-handle ui-resizable-s"></div></span>';
+                element.html(evtcontent);
+            }
+        },
+    }
+    $('#fullcalender').fullCalendar(fullCalender_options)
+
+
+</script>
