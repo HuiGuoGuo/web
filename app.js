@@ -5,14 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
-var mongoose = require('mongoose'); //连接mongodb
+var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var accounts = require('./routes/account/account');
 var blogs = require('./routes/blog/blog');
 var calender = require('./routes/calendar');
 
-var db = mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/test'); //连接mongodb
 
 var app = express();
 
