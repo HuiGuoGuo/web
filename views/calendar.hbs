@@ -1,130 +1,151 @@
 <script src="/js/fullcalendar.min.js"></script>
+<script src="/js/bootstrap-datetimepicker.min.js"></script>
+
 <link rel="stylesheet" href="/css/fullcalendar.css">
+<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
 <link>
 
 <div class="container">
-    <div id="fullcalender"></div>
+    <div id="myTabContent" class="tab-content">
+        <span class="label " style="background-color:#DC143C;font-size:16px">约会</span>
+        <span class="label " style='background-color:#DA70D6; font-size:16px'>运动</span>
+        <span class="label " style="background-color:#00FF7F;font-size:16px">用餐</span>
+        <span class="label " style="background-color:#228B22;font-size:16px">旅游</span>
+        <span class="label " style="background-color:#CCFF99;font-size:16px">看书</span>
+        <span class="label " style="background-color:#CCCCCC;font-size:16px">其它</span>
+        <br>
+        <br>
+        <div id="fullcalender"></div>
 
 
-</div>
+    </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" method="post">
-                    <div class="form-group">
-                        <label for="description" class="col-sm-2 control-label">时间</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="什么时间?" name="when">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post">
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="取个标题吧" name="title">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-2 control-label">地点</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="发生在哪里?" name="where">
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">事件</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="做了什么?" name="what">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-2 control-label">人物</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="你跟谁?" name="who">
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">时间</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" placeholder="开始时间?" name="start"  id="start">
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" placeholder="结束时间?" name="end"  id="end">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-2 control-label">事件</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="做了什么?" name="what">
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">地点</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="发生在哪里?" name="where">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-sm-2 control-label">备注/描述</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" name="discription"
+
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">类型</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="你跟谁?" name="type">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">备注/描述</label>
+                            <div class="col-sm-10">
+                            <textarea class="form-control" name="description"
                                       style="margin: 0px -0.850694px 0px 0px; width: 468px; height: 148px;"
                                       placeholder="想补充些什么?"></textarea>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">保存</button>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary submit" >保存</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<script>
+    <script>
 
-    var fullCalender_options = {
-        dayClick: function (date, allDay, jsEvent, view) {
-            var selDate = $.fullCalendar.formatDate(date, 'yyyy-MM-dd');//格式化当前日期
-            $('#myModal').modal('show')
-            $('#myModalLabel').html('新建事件')
+        var fullCalender_options = {
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            dayClick: function (date, allDay, jsEvent, view) {
+                var selDate = $.fullCalendar.formatDate(date, 'yyyy-MM-dd');//格式化当前日期
+                $('#myModal').modal('show')
+                $('#myModalLabel').html('新建事件')
 
-        },
-        eventAfterRender: function (event, element, view) {//数据绑定上去后添加相应信息在页面上
-            var fstart = $.fullCalendar.formatDate(event.start, "HH:mm");
-            var fend = $.fullCalendar.formatDate(event.end, "HH:mm");
+            },
+            events: [
+                {
+                    title: 'Test',
+                    start: "2016-06-22",
+                    end: "2016-06-27",
+                    backgroundColor: "#CCCCCC",
+                }
+            ],
+            eventClick: function (event, jsEvent, view) {
+                alert(11)
+            },
+        }
 
 
-            var confbg = '';
-            if (event.confid == 1) {
-                confbg = confbg + '<span class="fc-event-bg"></span>';
-            } else if (event.confid == 2) {
-                confbg = confbg + '<span class="fc-event-bg"></span>';
-            } else if (event.confid == 3) {
-                confbg = confbg + '<span class="fc-event-bg"></span>';
-            } else if (event.confid == 4) {
-                confbg = confbg + '<span class="fc-event-bg"></span>';
-            } else if (event.confid == 5) {
-                confbg = confbg + '<span class="fc-event-bg"></span>';
-            } else if (event.confid == 6) {
-                confbg = confbg + '<span class="fc-event-bg"></span>';
-            } else {
-                confbg = confbg + '<span class="fc-event-bg"></span>';
+        $('#fullcalender').fullCalendar(fullCalender_options)
+
+
+
+
+        $('#start, #end').datetimepicker({
+           // format: 'yyyy-mm-dd hh:ii',
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true,
+            pickerPosition: "bottom-left"
+        });
+
+
+
+    </script>
+    <script>
+        $('.submit').on('click',function(){
+            var ajax_options = {
+                type:'POST',
+                data:$('form:first').serialize(),
+                async:false,
+                success:function(request){
+                    if(request.status=='ok'){
+                        $('#myModal').modal('hide')
+                    }
+                }
             }
-
-            //  var titlebg = '<span class="fc-event-conf" style="background:' + event.confcolor + '">' + event.confshortname + '</span>';
-
-            //                if (event.repweeks > 0) {
-            //                    titlebg = titlebg + '<span class="fc-event-conf" style="background:#fff;top:0;right:15;color:#3974BC;font-weight:bold">R</span>';
-            //                }
-
-            if (view.name == "month") {//按月份
-                var evtcontent = '<div class="fc-event-vert"><a>';
-                evtcontent = evtcontent + confbg;
-                evtcontent = evtcontent + '<span class="fc-event-titlebg">' + fstart + " - " + fend + event.fullname + '</span>';
-
-                element.html(evtcontent);
-            } else if (view.name == "agendaWeek") {//按周
-                var evtcontent = '<a>';
-                evtcontent = evtcontent + confbg;
-                evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + "-" + fend + '</span>';
-                evtcontent = evtcontent + '<span>' + event.fullname + '</span>';
-
-                element.html(evtcontent);
-            } else if (view.name == "agendaDay") {//按日
-                var evtcontent = '<a>';
-                evtcontent = evtcontent + confbg;
-                evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + " - " + fend + '</span>';
-                //              evtcontent = evtcontent + '<span>Room: ' + event.confname + '</span>';
-                //                evtcontent = evtcontent + '<span>Host: ' + event.fullname + '</span>';
-                //                    evtcontent = evtcontent + '<span>Topic: ' + event.topic + '</span>';
-                // evtcontent = evtcontent + '</a><span class="ui-icon ui-icon-arrow-2-n-s"><div class="ui-resizable-handle ui-resizable-s"></div></span>';
-                element.html(evtcontent);
-            }
-        },
-    }
-    $('#fullcalender').fullCalendar(fullCalender_options)
+            $.ajax(ajax_options)
+        })
 
 
-</script>
+    </script>
+
